@@ -18,6 +18,7 @@ class Timer {
       this.onStart(this.timeRemaining);
     }
     this.tick();
+    this.pause(); //this prevents mulitple starts speedup
     this.timerInterval = setInterval(this.tick, 20);
     // this.startDeactivate();
   };
@@ -53,9 +54,9 @@ class Timer {
 }
 
 // Supposed to prevent mulitple starts but it doesn't work
-startActivate = () => {
-  this.startButton.disabled = false;
-};
-startDeactivate = () => {
-  this.startButton.disabled = true;
-};
+// startActivate = () => {
+//   this.startButton.disabled = false;
+// };
+// startDeactivate = () => {
+//   this.startButton.disabled = true;
+// };
