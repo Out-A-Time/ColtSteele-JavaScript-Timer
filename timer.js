@@ -15,14 +15,16 @@ class Timer {
 
   start = () => {
     if (this.onStart) {
-      this.onStart();
+      this.onStart(this.timeRemaining);
     }
     this.tick();
-    this.timerInterval = setInterval(this.tick, 1 * 1000);
+    this.timerInterval = setInterval(this.tick, 20);
+    // this.startDeactivate();
   };
 
   pause = () => {
     clearInterval(this.timerInterval);
+    // this.startActivate();
   };
 
   tick = () => {
@@ -34,9 +36,9 @@ class Timer {
     } else {
       //left side: calls the setter every time we want to update the value
       //right side: calls the getter to retrieve value
-      this.timeRemaining = this.timeRemaining - 1;
+      this.timeRemaining = this.timeRemaining - 0.02;
       if (this.onTick) {
-        this.onTick();
+        this.onTick(this.timeRemaining);
       }
     }
   };
@@ -46,6 +48,14 @@ class Timer {
   }
 
   set timeRemaining(time) {
-    this.durationInput.value = time;
+    this.durationInput.value = time.toFixed(2);
   }
 }
+
+// Supposed to prevent mulitple starts but it doesn't work
+startActivate = () => {
+  this.startButton.disabled = false;
+};
+startDeactivate = () => {
+  this.startButton.disabled = true;
+};
